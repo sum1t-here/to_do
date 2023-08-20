@@ -1,6 +1,9 @@
 import Todo from '../Todo/Todo.jsx';
+import TodoContext from '../../context/TodoContext.js';
+import { useContext } from 'react';
 
-function TodoList({ list, updateList }) {
+function TodoList() {
+  const { list, setList } = useContext(TodoContext);
   return (
     <div>
       {list.length > 0 &&
@@ -17,7 +20,7 @@ function TodoList({ list, updateList }) {
                 }
                 return todo;
               });
-              updateList(updatedList);
+              setList(updatedList);
             }}
           />
         ))}
