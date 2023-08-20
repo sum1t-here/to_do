@@ -14,11 +14,24 @@ function TodoList() {
             isFinished={todo.finished}
             todoData={todo.todoData}
             changeFinished={(isFinished) => {
-              list.map((t) => {
+              const updatedList = list.map((t) => {
                 if (t.id == todo.id) {
                   todo.finished = isFinished;
                 }
-                return todo;
+                return t;
+              });
+              setList(updatedList);
+            }}
+            onDelete={() => {
+              const updatedList = list.filter((t) => t.id != todo.id);
+              setList(updatedList);
+            }}
+            onEdit={(todoText) => {
+              const updatedList = list.map((t) => {
+                if (t.id == todo.id) {
+                  todo.todoData = todo.text;
+                }
+                return t;
               });
               setList(updatedList);
             }}
