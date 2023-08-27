@@ -53,7 +53,7 @@ function App() {
       />
       <TodoList
         deleteTodo={actions.deleteTodo}
-        edit_todo={actions.editTodo}
+        editTodo={actions.editTodo}
         todoFinished={actions.todoFinished}
       />
       {/* </ToDoDispatchContext.Provider> */}
