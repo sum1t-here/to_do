@@ -1,11 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux';
 import Todo from '../Todo/Todo.jsx';
-import TodoContext from '../../context/TodoContext.js';
-import { useContext } from 'react';
-import TodoDispatchContext from '../../context/TodoDispatchContext.js';
+// import TodoContext from '../../context/TodoContext.js';
+// import { useContext } from 'react';
+// import TodoDispatchContext from '../../context/TodoDispatchContext.js';
 
-function TodoList() {
-  const { list } = useContext(TodoContext);
-  const { dispatch } = useContext(TodoDispatchContext);
+function TodoList({ editTodo, deleteTodo, todoFinished }) {
+  const dispatch = useDispatch();
+  const list = useSelector((state) => state.todo);
+  // const { list } = useContext(TodoContext);
+  // const { dispatch } = useContext(TodoDispatchContext);
 
   function onFinished(todo, isFinished) {
     // const updatedList = list.map((t) => {
@@ -15,13 +18,15 @@ function TodoList() {
     //   return t;
     // });
     // setList(updatedList);
-    dispatch({ type: 'finish_todo', payload: { todo, isFinished } });
+    todoFinished(todo, isFinished);
+    // dispatch({ type: 'finish_todo', payload: { todo, isFinished } });
   }
 
   function onDelete(todo) {
     // const updatedList = list.filter((t) => t.id != todo.id);
     // setList(updatedList);
-    dispatch({ type: 'delete_todo', payload: { todo } });
+    deleteTodo(todo);
+    // dispatch({ type: 'delete_todo', payload: { todo } });
   }
 
   function onEdit(todo, todoText) {
@@ -32,7 +37,8 @@ function TodoList() {
     //   return t;
     // });
     // setList(updatedList);
-    dispatch({ type: 'edit_todo', payload: { todo, todoText } });
+    editTodo(todo, todoText);
+    // dispatch({ type: 'edit_todo', payload: { todo, todoText } });
   }
 
   return (
