@@ -3,25 +3,15 @@ import TodoList from './components/TodoList/TodoList.jsx';
 import AddTodo from './components/AddTodo/AddTodo.jsx';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
+
+import todoReducer, {
   addTodo,
-  deleteTodo,
   editTodo,
+  deleteTodo,
   todoFinished,
-} from './actions/todoActions.js';
-// import TodoContext from './context/TodoContext.js';
-// import { useReducer } from 'react';
-// import ToDoDispatchContext from './context/TodoDispatchContext.js';
-// import todoReducer from './reducers/todoReducer.js';
+} from './slices/todoSlice.js';
 
 function App() {
-  // const [list, setList] = useState([
-  //   { id: 1, todoData: 'todo 1', finished: false },
-  //   { id: 2, todoData: 'todo 2', finished: false },
-  // ]);
-
-  // const [list, dispatch] = useReducer(todoReducer, []);
-
   const dispatch = useDispatch();
   const actions = bindActionCreators(
     {
@@ -34,30 +24,12 @@ function App() {
   );
   return (
     <>
-      {/* <TodoContext.Provider value={{ list }}> */}
-      {/* <ToDoDispatchContext.Provider value={{ dispatch }}> */}
-      <AddTodo
-        addTodo={actions.addTodo}
-        // updateList={(todo) => {
-        //   // setList([
-        //   //   ...list,
-        //   //   {
-        //   //     id: list.length + 1,
-        //   //     todoData: todo,
-        //   //     finished: false,
-        //   //   },
-        //   // ])
-
-        //   dispatch({ type: 'add_todo', payload: { todoText: todo } });
-        //}}
-      />
+      <AddTodo addTodo={actions.addTodo} />
       <TodoList
         deleteTodo={actions.deleteTodo}
         editTodo={actions.editTodo}
         todoFinished={actions.todoFinished}
       />
-      {/* </ToDoDispatchContext.Provider> */}
-      {/* </TodoContext.Provider> */}
     </>
   );
 }
