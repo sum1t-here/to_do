@@ -11,7 +11,7 @@ const todoSlice = createSlice({
     addTodo: (todo, action) => {
       console.log('addTodo action:', action);
       let todoText = action.payload.todoText;
-      console.log('Current state:', state);
+      console.log('Current state:', todoText);
       todo.todoList.push({
         id: todo.todoList.length + 1,
         todoData: todoText,
@@ -32,7 +32,7 @@ const todoSlice = createSlice({
     todoFinished: (todo, action) => {
       let payloadTodo = action.payload.todo;
       let isFinished = action.payload.isFinished;
-      todo.todoList = state.todoList.map((t) => {
+      todo.todoList = todo.todoList.map((t) => {
         if (t.id == payloadTodo.id) {
           todo.finished = isFinished;
         }

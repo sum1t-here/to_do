@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 function AddTodo({ addTodo }) {
   const [inputText, setInputText] = useState('');
@@ -16,6 +15,7 @@ function AddTodo({ addTodo }) {
         onClick={() => {
           addTodo({ todoText: inputText });
           setInputText('');
+          console.log(inputText);
         }}
       >
         Add

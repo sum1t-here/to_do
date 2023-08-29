@@ -4,7 +4,7 @@ import Todo from '../Todo/Todo.jsx';
 function TodoList({ editTodo, deleteTodo, todoFinished }) {
   const list = useSelector((state) => state.todo.todoList);
 
-  console.log(list);
+  console.log('todo list', list);
 
   function onFinished(todo, isFinished) {
     todoFinished({ todo, isFinished });
